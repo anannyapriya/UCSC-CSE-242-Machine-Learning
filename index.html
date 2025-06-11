@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Cheat Sheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+      margin: 2rem;
+    }
+    h1, h2, h3 {
+      color: #1a73e8;
+    }
+    code, pre {
+      background-color: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+    pre {
+      padding: 1rem;
+      overflow-x: auto;
+    }
+    section {
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 Machine Learning Cheat Sheet (with Formulas)</h1>
+
+  <section>
+    <h2>1. Types of Learning</h2>
+    <ul>
+      <li><strong>Supervised Learning:</strong> Labeled data (Classification, Regression)</li>
+      <li><strong>Unsupervised Learning:</strong> No labels (Clustering, PCA)</li>
+      <li><strong>Reinforcement Learning:</strong> Reward-based learning</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. Probability & Bayes Review</h2>
+    <pre><code>Bayes Theorem:
+P(Y | X) = P(X | Y) * P(Y) / P(X)
+
+MLE:
+θ_MLE = argmaxθ P(D | θ)
+
+MAP:
+θ_MAP = argmaxθ P(D | θ) * P(θ)</code></pre>
+  </section>
+
+  <section>
+    <h2>3. Linear & Logistic Regression</h2>
+    <pre><code>Linear Regression:
+y = Xw + b
+minimize ||Xw - y||^2
+
+Ridge (L2):
+minimize ||Xw - y||^2 + λ ||w||^2
+
+Lasso (L1):
+minimize ||Xw - y||^2 + λ ||w||_1
+
+Logistic Regression:
+P(y=1|x) = 1 / (1 + exp(-w^T x))</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Loss Functions & Gradient Descent</h2>
+    <pre><code>Square Loss: (y - ŵ)^2
+Log Loss: -[y log(ŵ) + (1 - y) log(1 - ŵ)]
+Gradient Descent:
+w <- w - η * ∇L(w)</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Perceptron</h2>
+    <pre><code>Prediction: ŵ = sign(w^T x + b)
+Update: w <- w + yx, b <- b + y if y(w^T x + b) ≤ 0</code></pre>
+  </section>
+
+  <section>
+    <h2>6. Support Vector Machines (SVM)</h2>
+    <pre><code>Hard-Margin:
+minimize 1/2 ||w||^2
+subject to y_i(w^T x_i + b) ≥ 1
+
+Soft-Margin:
+minimize 1/2 ||w||^2 + C ∑ ξ_i
+subject to y_i(w^T x_i + b) ≥ 1 - ξ_i</code></pre>
+  </section>
+
+  <section>
+    <h2>7. Kernel Methods</h2>
+    <pre><code>Kernel Trick:
+K(x, z) = φ(x)^T φ(z)
+
+Linear: x^T z
+Polynomial: (x^T z + c)^d
+RBF: exp(-γ ||x - z||^2)</code></pre>
+  </section>
+
+  <section>
+    <h2>8. Naive Bayes</h2>
+    <pre><code>Assumption:
+P(x|y) = ∏ P(x_j | y)
+
+Prediction:
+y* = argmax_y P(y) * ∏ P(x_j | y)</code></pre>
+  </section>
+
+  <section>
+    <h2>9. K-Nearest Neighbors (KNN)</h2>
+    <pre><code>Distance Metrics:
+L2 (Euclidean): sqrt(Σ (x_i - x'_i)^2)
+L1 (Manhattan): Σ |x_i - x'_i|</code></pre>
+  </section>
+
+  <section>
+    <h2>⭐ Bonus: Bias-Variance Trade-off</h2>
+    <pre><code>Total Error = Bias^2 + Variance + Irreducible Error</code></pre>
+  </section>
+
+  <section>
+    <h2>✅ Tips</h2>
+    <ul>
+      <li>Normalize features for KNN and SGD</li>
+      <li>Use regularization to avoid overfitting</li>
+      <li>Understand the kernel trick for non-linear SVMs</li>
+    </ul>
+  </section>
+</body>
+</html>
