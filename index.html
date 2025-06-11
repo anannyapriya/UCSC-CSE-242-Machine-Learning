@@ -1,139 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ML Cheat Sheet</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Machine Learning Cheat Sheet</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f9f9f9;
-      color: #222;
+      font-family: Arial, sans-serif;
+      margin: 40px;
       line-height: 1.6;
-      margin: 2rem;
+      background-color: #f9f9f9;
     }
     h1, h2, h3 {
-      color: #1a73e8;
+      color: #2c3e50;
     }
-    code, pre {
-      background-color: #eee;
-      padding: 0.2rem 0.4rem;
+    code {
+      background-color: #f4f4f4;
+      padding: 2px 4px;
+      font-size: 90%;
       border-radius: 4px;
-      font-size: 0.95rem;
-    }
-    pre {
-      padding: 1rem;
-      overflow-x: auto;
-    }
-    section {
-      margin-bottom: 2.5rem;
     }
   </style>
 </head>
 <body>
-  <h1>📘 Machine Learning Cheat Sheet (with Formulas)</h1>
+  <h1>📘 Machine Learning Cheat Sheet</h1>
 
-  <section>
-    <h2>1. Types of Learning</h2>
-    <ul>
-      <li><strong>Supervised Learning:</strong> Labeled data (Classification, Regression)</li>
-      <li><strong>Unsupervised Learning:</strong> No labels (Clustering, PCA)</li>
-      <li><strong>Reinforcement Learning:</strong> Reward-based learning</li>
-    </ul>
-  </section>
+  <h2>1. Types of Learning</h2>
+  <ul>
+    <li><strong>Supervised Learning:</strong> Learn from labeled data to predict outputs.</li>
+    <li><strong>Unsupervised Learning:</strong> Find patterns in data without labels.</li>
+    <li><strong>Reinforcement Learning:</strong> Agent learns by interacting with environment via rewards.</li>
+  </ul>
 
-  <section>
-    <h2>2. Probability & Bayes Review</h2>
-    <pre><code>Bayes Theorem:
+  <h2>2. Probability & Bayes Review</h2>
+  <p>Used for modeling uncertainty and building probabilistic models.</p>
+  <pre><code>Bayes Theorem:
 P(Y | X) = P(X | Y) * P(Y) / P(X)
-
 MLE:
-θ_MLE = argmaxθ P(D | θ)
-
+θ_MLE = argmax_θ P(D | θ)
 MAP:
-θ_MAP = argmaxθ P(D | θ) * P(θ)</code></pre>
-  </section>
+θ_MAP = argmax_θ P(D | θ) * P(θ)</code></pre>
 
-  <section>
-    <h2>3. Linear & Logistic Regression</h2>
-    <pre><code>Linear Regression:
-y = Xw + b
-minimize ||Xw - y||^2
+  <h2>3. Linear & Logistic Regression</h2>
+  <p>Predict numerical values (Linear) or probabilities (Logistic) using weighted input features.</p>
+  <pre><code>Linear: y = Xw + b
+Logistic: P(y=1|x) = 1 / (1 + exp(-wᵀx))</code></pre>
 
-Ridge (L2):
-minimize ||Xw - y||^2 + λ ||w||^2
+  <h2>4. Loss Functions & Gradient Descent</h2>
+  <p>Used to measure error and update model weights to reduce error.</p>
+  <pre><code>Square Loss: (y - ŷ)²
+Log Loss: -[y log(ŷ) + (1 - y) log(1 - ŷ)]
+Gradient Descent: w ← w - η * ∇L(w)</code></pre>
 
-Lasso (L1):
-minimize ||Xw - y||^2 + λ ||w||_1
+  <h2>5. Perceptron</h2>
+  <p>Simple linear classifier that updates weights based on misclassifications.</p>
+  <pre><code>Prediction: ŷ = sign(wᵀx + b)
+Update: w ← w + yx, b ← b + y</code></pre>
 
-Logistic Regression:
-P(y=1|x) = 1 / (1 + exp(-w^T x))</code></pre>
-  </section>
+  <h2>6. Support Vector Machines (SVM)</h2>
+  <p>Finds a hyperplane that maximizes margin between two classes.</p>
+  <pre><code>Hard-Margin: minimize ½ ||w||² subject to yᵢ(wᵀxᵢ + b) ≥ 1
+Soft-Margin: minimize ½ ||w||² + C ∑ ξᵢ</code></pre>
 
-  <section>
-    <h2>4. Loss Functions & Gradient Descent</h2>
-    <pre><code>Square Loss: (y - ŵ)^2
-Log Loss: -[y log(ŵ) + (1 - y) log(1 - ŵ)]
-Gradient Descent:
-w <- w - η * ∇L(w)</code></pre>
-  </section>
+  <h2>7. Kernel Methods</h2>
+  <p>Allows linear algorithms to learn non-linear boundaries using kernel functions.</p>
+  <pre><code>K(x, z) = φ(x)ᵀ φ(z)
+RBF: exp(-γ ||x - z||²)</code></pre>
 
-  <section>
-    <h2>5. Perceptron</h2>
-    <pre><code>Prediction: ŵ = sign(w^T x + b)
-Update: w <- w + yx, b <- b + y if y(w^T x + b) ≤ 0</code></pre>
-  </section>
+  <h2>8. Naive Bayes</h2>
+  <p>Probabilistic classifier assuming feature independence given class.</p>
+  <pre><code>P(x|y) = ∏ P(xⱼ | y)
+y* = argmax_y P(y) ∏ P(xⱼ | y)</code></pre>
 
-  <section>
-    <h2>6. Support Vector Machines (SVM)</h2>
-    <pre><code>Hard-Margin:
-minimize 1/2 ||w||^2
-subject to y_i(w^T x_i + b) ≥ 1
+  <h2>9. K-Nearest Neighbors (KNN)</h2>
+  <p>Classify based on majority label among k-nearest points.</p>
+  <pre><code>Euclidean: sqrt(∑ (xᵢ - xᵢ')²)
+Manhattan: ∑ |xᵢ - xᵢ'|</code></pre>
 
-Soft-Margin:
-minimize 1/2 ||w||^2 + C ∑ ξ_i
-subject to y_i(w^T x_i + b) ≥ 1 - ξ_i</code></pre>
-  </section>
+  <h2>10. K-Means Clustering</h2>
+  <p>Partition data into k clusters based on similarity (distance to centroids).</p>
+  <pre><code>J = ∑ₖ ∑_{x ∈ Cₖ} ||x - μₖ||²</code></pre>
 
-  <section>
-    <h2>7. Kernel Methods</h2>
-    <pre><code>Kernel Trick:
-K(x, z) = φ(x)^T φ(z)
+  <h2>11. Expectation Maximization (EM)</h2>
+  <p>Iterative algorithm for parameter estimation in latent variable models like Gaussian Mixtures.</p>
+  <ul>
+    <li><strong>E-step:</strong> Estimate responsibility</li>
+    <li><strong>M-step:</strong> Maximize likelihood using current responsibilities</li>
+  </ul>
+  <pre><code>log L(θ) = ∑_i log ∑_z P(xᵢ, z | θ)</code></pre>
 
-Linear: x^T z
-Polynomial: (x^T z + c)^d
-RBF: exp(-γ ||x - z||^2)</code></pre>
-  </section>
+  <h2>12. Decision Trees</h2>
+  <p>Tree-structured model splitting features to make decisions with highest information gain.</p>
+  <pre><code>Entropy: H(S) = -∑ pᵢ log₂(pᵢ)
+Information Gain: IG(S, A) = H(S) - ∑_v (|Sᵥ| / |S|) H(Sᵥ)</code></pre>
 
-  <section>
-    <h2>8. Naive Bayes</h2>
-    <pre><code>Assumption:
-P(x|y) = ∏ P(x_j | y)
+  <h2>13. Boosting & AdaBoost</h2>
+  <p>Combine weak learners iteratively, focusing on misclassified points to build strong ensemble.</p>
+  <pre><code>Final hypothesis: H(x) = sign(∑ₜ αₜ hₜ(x))</code></pre>
 
-Prediction:
-y* = argmax_y P(y) * ∏ P(x_j | y)</code></pre>
-  </section>
+  <h2>⭐ Bias-Variance Tradeoff</h2>
+  <p>Describes the balance between underfitting and overfitting.</p>
+  <pre><code>Error = Bias² + Variance + Irreducible Error</code></pre>
 
-  <section>
-    <h2>9. K-Nearest Neighbors (KNN)</h2>
-    <pre><code>Distance Metrics:
-L2 (Euclidean): sqrt(Σ (x_i - x'_i)^2)
-L1 (Manhattan): Σ |x_i - x'_i|</code></pre>
-  </section>
-
-  <section>
-    <h2>⭐ Bonus: Bias-Variance Trade-off</h2>
-    <pre><code>Total Error = Bias^2 + Variance + Irreducible Error</code></pre>
-  </section>
-
-  <section>
-    <h2>✅ Tips</h2>
-    <ul>
-      <li>Normalize features for KNN and SGD</li>
-      <li>Use regularization to avoid overfitting</li>
-      <li>Understand the kernel trick for non-linear SVMs</li>
-    </ul>
-  </section>
+  <h2>✅ Tips</h2>
+  <ul>
+    <li>Normalize features for KNN, SVM, SGD</li>
+    <li>Use regularization to reduce overfitting</li>
+    <li>Understand the kernel trick in SVM</li>
+  </ul>
 </body>
 </html>
